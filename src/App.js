@@ -11,14 +11,11 @@ import Products from "./Components/Products"
 import Cart from "./Components/Cart"
 import Register from "./Components/Register";
 import Login from "./Components/Login";
-// import { ChakraProvider } from '@chakra-ui/react'
 // import Navbar from './Components/Navbar';
 
 function App() {
   return (
-    // <ChakraProvider>
-    //   <Navbar/>
-    // </ChakraProvider>
+
     <>
       <ResponsiveAppBar />
       <Routes>
@@ -28,7 +25,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<Login />} />
       </Routes>
-    </>
+      </>
   );
 }
 

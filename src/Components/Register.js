@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Register = () => {
   return (
-    <div>Register</div>
-  )
-}
+    <div>
+      <h2 style={{textAlign:"center"}}>Register</h2>
+    </div>
+  );
+};
 
-export default Register
+export default Register;

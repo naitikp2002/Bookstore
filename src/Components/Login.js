@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Login = () => {
   return (
-    <div>Login</div>
-  )
-}
+    <div>
+      <h2 style={{textAlign:"center"}}>Login</h2>
+    </div>
+  );
+};
 
-export default Login
+export default Login;

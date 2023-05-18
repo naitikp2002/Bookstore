@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Cart = () => {
   return (
-    <div>Cart</div>
-  )
-}
+    <div>
+      <h2 style={{textAlign:"center"}}>Cart</h2>
+    </div>
+  );
+};
 
-export default Cart
+export default Cart;

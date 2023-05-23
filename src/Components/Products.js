@@ -8,7 +8,7 @@ const Products = () => {
       <h2 style={{ textAlign: "center" }}>Products</h2>
       <div>
         <h1>{message}</h1>
-        <img src={imageUrl} alt="My Image" width={500}/>
+        <img src={imageUrl} alt="2 cartoons" width={500}/>
       </div>
     </div>
   );

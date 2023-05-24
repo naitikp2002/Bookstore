@@ -1,39 +1,77 @@
-import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { Box } from '@material-ui/core';
-import { Stack } from '@mui/material';
-const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { TextField, Button, Stack } from '@mui/material';
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Name:', name);
-    console.log('Email:', email);
-    // You can perform further actions with the form data here
-  };
+const validationSchema = Yup.object({
+  name: Yup.string().required('Name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(8, 'Password must be at least 8 characters long'),
+});
+
+const Register = () => {
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log(values); // You can replace this with your desired data storage logic
+    },
+  });
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack sx={{ flexDirection: 'column', maxWidth:"20" }} padding={20}>
+    <Stack sx={{ flexDirection: 'column', maxWidth:"20" }} padding={20}>
+    <form onSubmit={formik.handleSubmit}>
       <TextField
+        fullWidth
+        id="name"
+        name="name"
         label="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={formik.values.name}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.name && formik.errors.name ? true : false}
+        helperText={formik.touched.name && formik.errors.name}
         margin="normal"
       />
+
       <TextField
+        fullWidth
+        id="email"
+        name="email"
         label="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.email && formik.errors.email ? true : false}
+        helperText={formik.touched.email && formik.errors.email}
         margin="normal"
       />
-      <Button mx={{ marginTop: '30px' }} type="submit" variant="contained" color="primary">
+
+      <TextField
+        fullWidth
+        id="password"
+        name="password"
+        label="Password"
+        type="password"
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={formik.touched.password && formik.errors.password ? true : false}
+        helperText={formik.touched.password && formik.errors.password}
+        margin="normal"
+      />
+
+      <Button variant="contained" color="primary" type="submit">
         Submit
       </Button>
-      </Stack>
     </form>
+    </Stack>
   );
 };
 

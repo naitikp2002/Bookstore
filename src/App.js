@@ -13,11 +13,13 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Post from "./Components/Post";
 // import Navbar from './Components/Navbar';
+import { UserProvider } from "./Components/UserContext";
 
 function App() {
   return (
     <>
       <ResponsiveAppBar />
+      <UserProvider>
       <Routes>
         <Route path="/" element={<Products />} />
         <Route path="/products" element={<Products />} />
@@ -26,6 +28,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/signin" element={<Login />} />
       </Routes>
+      </UserProvider>
       </>
   );
 }

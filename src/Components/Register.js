@@ -2,8 +2,13 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { TextField, Button, Stack } from '@mui/material';
+import { useContext} from 'react';
+import { UserContext } from './UserContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const validationSchema = Yup.object({
+  
   name: Yup.string().required('Name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
@@ -12,6 +17,7 @@ const validationSchema = Yup.object({
 });
 
 const Register = () => {
+  const { setUser } = useContext(UserContext);
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -21,6 +27,9 @@ const Register = () => {
     validationSchema,
     onSubmit: (values) => {
       console.log(values); // You can replace this with your desired data storage logic
+      localStorage.setItem('RegisteredUser', JSON.stringify(values));
+      setUser(values);
+      toast.success('Registered Successful');
     },
   });
 
@@ -71,6 +80,7 @@ const Register = () => {
         Submit
       </Button>
     </form>
+    <ToastContainer />
     </Stack>
   );
 };

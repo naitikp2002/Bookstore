@@ -1,13 +1,18 @@
 import React from "react";
 import UserDetails from "./UserDetails";
+import BookList from "./BookList";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const Products = () => {
   return (
-    <div>
+    <div >
       {/* <h2 style={{ textAlign: "center" }}>Products</h2> */}
-      <div style={{textAlign:"center"}}>
+      {/* <div style={{textAlign:"center"}}>
         <UserDetails/>
-      </div>
+      </div> */}
+      <ChakraProvider>
+      <BookList/>
+      </ChakraProvider>
     </div>
   );
 };
